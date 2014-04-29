@@ -3,6 +3,7 @@ import time
 from decorator import decorator
 
 from reprep.utils import frozendict2
+from contracts.interface import describe_value
 
 
 __all__ = ['memoize_instance', 'memoize_simple']
@@ -77,7 +78,17 @@ def memoize_instance(f2):
             return signature
 
         key = (args, frozendict2(kwargs))
-        if key not in cache:
+        
+        try:
+            missing = key not in cache
+        except TypeError:
+            print get_signature()
+            print('Cannot hash key %s\n\t%s' % (describe_value(key), key.__repr__()))
+            print 'args', args
+            print 'kwargs', kwargs
+            raise
+        
+        if missing:
             c0 = time.clock()
             t0 = time.time()
             result = f(obj, *args, **kwargs)
