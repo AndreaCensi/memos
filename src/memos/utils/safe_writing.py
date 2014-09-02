@@ -24,8 +24,6 @@ def safe_write(filename, mode='wb', compresslevel=5):
         with fopen(tmp_filename, mode) as f:
             yield f
 
-        if os.path.exists(filename):
-            os.unlink(filename)
 
         try:
             os.rename(tmp_filename, filename)
