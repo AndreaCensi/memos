@@ -1,11 +1,11 @@
+from .utils import frozendict2
+from decorator import decorator
 import time
 
-from decorator import decorator
-
-from reprep.utils import frozendict2
-
-
-__all__ = ['memoize_instance', 'memoize_simple']
+__all__ = [
+    'memoize_instance',
+    'memoize_simple',
+]
 
 
 
