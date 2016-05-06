@@ -13,7 +13,7 @@ MEMO_DISK_CACHE_DIR = 'out-memo_disk'
 
 
 def memo_disk_dec(f):
-    ''' Decorator fro memo_disk '''
+    ''' Decorator for memo_disk '''
     def f2(*args, **kwargs):
         return memo_disk(f, *args, **kwargs)
     return f2
